@@ -6,6 +6,7 @@ body {
     justify-content: center;
     align-items: center;
     font-family: 'Bubblegum Sans', cursive;
+    gap: 10px;
 }
 
 .content-container {
@@ -81,4 +82,38 @@ body {
 
 .footer {
     font-size: 16px;
+}
+
+.heart-frog {
+    height: 100px;
+    width: 100px;
+    border-radius: 20px;
+    transform: scale(1);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.heart-frog:hover {
+    transform: scale(1.5);
+}
+
+.despair {
+    height: 500px;
+    width: 500px;
+}
+
+.top-gifs {
+    display: flex;
+    gap: 600px;
+}
+
+.bottom-gifs {
+    display: flex;
+    gap: 600px;
+}
+
+.sad-frog {
+    height: 100px;
+    width: 100px;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
