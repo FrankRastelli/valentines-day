@@ -1,6 +1,7 @@
 const header = document.querySelector(".header");
 const yes = document.querySelector(".yes-button");
 const no = document.querySelector(".no-button");
+const excitedFrog = document.querySelector(".excited-frog");
 
 // For button movement
 const avoidanceRadius = 150;
@@ -44,3 +45,15 @@ yes.addEventListener("click", ()=> {
     yes.remove();
     no.remove();
 });
+
+yes.addEventListener("mouseenter", () => {
+    excitedFrog.style.visibility = "visible";
+    excitedFrog.style.opacity = "1";
+});
+
+yes.addEventListener("mouseleave", () => {
+    excitedFrog.style.opacity = "0";
+    setTimeout(() => {
+        excitedFrog.style.visibility = "hidden";
+  }, 500);
+})
