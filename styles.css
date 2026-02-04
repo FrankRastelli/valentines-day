@@ -200,3 +200,235 @@ body {
     bottom: 0;
     padding-bottom: 25px;
 }
+
+.kicking-feet {
+    border-radius: 25px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.kicking-header {
+    font-size: 24px;
+}
+
+.kicking-footer {
+    font-size: 18px;
+}
+
+
+/* ---------- Polaroid string page (photos.html) Implemented with ChatGPT---------- */
+.polaroid-page {
+  min-height: 100vh;
+  background-color: #ff8fab;
+  font-family: 'Bubblegum Sans', cursive;
+  padding: 30px 16px 90px;
+  overflow-x: hidden;
+}
+
+.polaroid-header {
+  max-width: 1100px;
+  margin: 0 auto 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.polaroid-title {
+  color: #ff4aae;
+  font-size: 36px;
+
+  background-color: #ffc0f3;
+  padding: 16px 40px;
+  border-radius: 30px;
+
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  margin: 0 auto;       /* center the box */
+  display: inline-block;
+}
+
+
+.back-link {
+  position: fixed;      /* sticks to the screen */
+  top: 16px;
+  left: 16px;
+
+  text-decoration: none;
+  color: #ff4aae;
+  background: #ffc0f3;
+  padding: 10px 14px;
+  border-radius: 14px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  z-index: 1000;        /* stays above everything */
+  transform: scale(1);
+}
+
+.back-link:hover {
+    transform: scale(1.15);
+}
+
+
+.string-gallery {
+  position: relative;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding-top: 90px; /* space for string + clips */
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+/* Droopy string (SVG rope) */
+.string-line {
+  position: absolute;
+  top: 22px;   /* adjust up/down */
+  left: 0;
+  right: 0;
+  height: 90px; /* how much vertical room the droop has */
+  pointer-events: none;
+}
+
+.string-line::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  /* SVG droopy rope */
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 120' preserveAspectRatio='none'%3E%3Cpath d='M0,25 C250,105 750,105 1000,25' fill='none' stroke='rgba(60,20,40,0.35)' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  /* subtle shadow for depth */
+  filter: drop-shadow(0px 3px 6px rgba(0,0,0,0.25));
+}
+
+
+/* Polaroid */
+.polaroid {
+  position: relative;
+  width: 220px;
+  background: #fff;
+  border-radius: 12px;
+  padding: 12px 12px 22px;
+  box-shadow: rgba(0,0,0,0.35) 0px 8px 20px;
+  transform-origin: top center;
+  transition: transform 0.25s ease;
+}
+
+/* “Pin” point */
+.polaroid::before {
+  content: "";
+  position: absolute;
+  top: -18px;
+  left: 50%;
+  width: 14px;
+  height: 14px;
+  background: rgba(60, 20, 40, 0.35);
+  border-radius: 50%;
+  transform: translateX(-50%);
+}
+
+/* Clip */
+.clip {
+  position: absolute;
+  top: -36px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 54px;
+  height: 30px;
+  background: #f1a8ff;
+  border-radius: 8px;
+  box-shadow: rgba(0,0,0,0.25) 0px 4px 10px;
+}
+
+/* Clip notch */
+.clip::after {
+  content: "";
+  position: absolute;
+  bottom: 6px;
+  left: 10px;
+  right: 10px;
+  height: 7px;
+  background: rgba(255,255,255,0.65);
+  border-radius: 4px;
+}
+
+.polaroid img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.polaroid p {
+  margin: 10px 0 0;
+  text-align: center;
+  color: #ff4aae;
+  font-size: 18px;
+}
+
+/* Hover lift */
+.polaroid:hover {
+  transform: translateY(-6px) scale(1.03) rotate(var(--tilt, 0deg));
+}
+
+/* Tilts */
+.tilt-1 { --tilt: -5deg; transform: rotate(-5deg); }
+.tilt-2 { --tilt:  4deg; transform: rotate(4deg); }
+.tilt-3 { --tilt: -2deg; transform: rotate(-2deg); }
+.tilt-4 { --tilt:  6deg; transform: rotate(6deg); }
+
+@media (max-width: 900px) {
+  .string-gallery { justify-content: center; }
+  .string-line { left: 10px; right: 10px; }
+  .polaroid-header { flex-direction: column; }
+}
+
+/* --- Hanging thread + sway animation add-on --- */
+
+/* The little thread from the main string down to the clip */
+.polaroid::after {
+  content: "";
+  position: absolute;
+
+  /* center it under the string */
+  left: 50%;
+  top: -2px;            /* starts near the string line area */
+  transform: translateX(-50%);
+
+  width: 2px;
+  height: 34px;         /* length of the thread */
+  background: rgba(60, 20, 40, 0.35);
+  border-radius: 999px;
+}
+
+/* Sway animation */
+@keyframes sway {
+  0%   { transform: rotate(var(--tilt, 0deg)); }
+  50%  { transform: rotate(calc(var(--tilt, 0deg) * -1)); }
+  100% { transform: rotate(var(--tilt, 0deg)); }
+}
+
+/* Apply sway (subtle) */
+.polaroid {
+  animation: sway 3.6s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Make each polaroid sway at a slightly different speed so it feels natural */
+.tilt-1 { animation-duration: 3.2s; }
+.tilt-2 { animation-duration: 3.8s; }
+.tilt-3 { animation-duration: 4.3s; }
+.tilt-4 { animation-duration: 3.5s; }
+
+/* Pause sway when hovering (optional, feels nice) */
+.polaroid:hover {
+  animation-play-state: paused;
+}
+
+/* Move the middle photos down so they hang under the string */
+.tilt-2,
+.tilt-3 {
+  margin-top: 20px;
+}
