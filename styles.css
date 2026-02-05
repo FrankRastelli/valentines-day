@@ -673,3 +673,15 @@ body {
   margin: 0;
   font-size: 56px;
 }
+
+/* ---------- YES screen lasers overlay ---------- */
+.laser-canvas{
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 999;                 /* above content */
+  mix-blend-mode: screen;       /* makes it “light up” */
+  opacity: 0.9;
+}
