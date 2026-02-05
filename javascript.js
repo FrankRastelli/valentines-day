@@ -3,6 +3,7 @@ const yes = document.querySelector(".yes-button");
 const no = document.querySelector(".no-button");
 const excitedFrog = document.querySelector(".excited-frog");
 const envelope = document.querySelector('.envelope-wrapper');
+const giftCards = document.querySelectorAll(".flip-container");
 
 // For button movement
 if (no) {
@@ -69,4 +70,12 @@ if (envelope) {
     envelope.addEventListener('click', () => {
         envelope.classList.toggle('flap');
     });
+}
+
+if (giftCards.length) {
+  giftCards.forEach((card) => {
+    card.addEventListener("click", () => {
+      card.classList.toggle("flipped");
+    });
+  });
 }
